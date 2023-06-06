@@ -39,21 +39,40 @@ class Hamster {
     greet(){
         console.log(`Hello I am ${this.name}`);
     }
-    eat(){
-        weight++, mood++;
+    eat(times) {
+        for (let i = 0; i < times; i++) {
+          this.eat();
+        }
+      }
+      exercise(times) {
+        for (let i = 0; i < times; i++) {
+          this.exercise();
+        }
     }
-    exercise(){
-        this.weight--;
-    }
-    ageUp(){
-        this.age++;
-        this.height++;
-        this.weight++;
-        this.mood--;
-        this.bankAccount+=10;
+    ageUp(years){
+        this.age += years;
+        this.height += years;
+        this.weight += years;
+        this.mood -= years;
+        this.bankAccount +=10 * years;
     }
     buyHamster(hamster){
-        hamster.push();
+        this.hamsters.push(hamster);
+        this.mood+= 10;
+        this.bankAccount -= hamster.price;
+        hamster.owner=this.name;
     }
 
   }
+  //Create a Story
+  const Timmy = new Person("Timmy");
+  Timmy.ageUp(5);
+  Timmy.eat(5);
+  Timmy.exercise(5);
+  Timmy.ageUp(9);
+  const gus = new Hamster("Gus");
+  gus.setOwner(Timmy.owner);
+  Timmy.buyHamster(gus);
+  Timmy.ageUp(15);
+  Timmy.eat(2);
+  Timmy.exercise(2);
